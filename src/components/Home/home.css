@@ -1,0 +1,24 @@
+.main {
+  height: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main--container {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main--container h1 {
+  font-size: 2rem;
+}
+
+.main--container .formularioCarga {
+  margin-top: 2rem;
+}
