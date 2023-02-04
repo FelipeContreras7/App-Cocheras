@@ -31,4 +31,17 @@ export async function createNewHourVehicle(vehicleData) {
   return response.id;
 }
 
+//Traemos los vehículos que aún no salieron
+export async function getItems() {
+  const miColeccion = collection(firestore, "porhora");
+  let snapshotDB = await getDocs(miColeccion);
+
+  let dataDocs = snapshotDB.docs.map((documento) => {
+    let docFormateado = { ...documento.data(), id: documento.id };
+    return docFormateado;
+  });
+  console.log(dataDocs);
+  return dataDocs;
+}
+
 export default firestore;

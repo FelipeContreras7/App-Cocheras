@@ -10,7 +10,7 @@ function NavBar() {
       </div>
       <div className="NavBar--items">
         <Link to="/">Inicio</Link>
-        <Link to="/">Cobrar</Link>
+        <Link to="/cobrar">Cobrar</Link>
         <Link to="/">Configuración</Link>
       </div>
     </header>

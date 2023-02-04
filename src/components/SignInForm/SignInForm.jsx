@@ -10,17 +10,17 @@ function SignInForm() {
 
   const [dataForm, setDataForm] = useState({
     patente: "",
-    tipovehiculo: "",
+    tipovehiculo: "AUTO",
   });
 
-  function handleSelect(e) {
-    let name = e.target.name;
-    const valor = e.target.value;
+  // function handleSelect(e) {
+  //   let name = e.target.name;
+  //   const valor = e.target.value;
 
-    const newDataForm = { ...dataForm };
-    newDataForm[name] = valor;
-    setDataForm(newDataForm);
-  }
+  //   const newDataForm = { ...dataForm };
+  //   newDataForm[name] = valor;
+  //   setDataForm(newDataForm);
+  // }
 
   function inputChangeHandler(evt) {
     let name = evt.target.name;
@@ -33,14 +33,16 @@ function SignInForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    let hora = new Date();
+    let hora2 = hora.getHours() + ":" + hora.getMinutes();
+
     const datosporhora = {
       patente: dataForm["patente"],
       tipo: dataForm["tipovehiculo"],
-      fechaentrada: new Date(),
+      fechaentrada: hora2,
       fechasalida: null,
     };
-
-    console.log(dataForm);
 
     createNewHourVehicle(datosporhora).then(navigate(`/`));
 
@@ -57,9 +59,6 @@ function SignInForm() {
         required
       />
       <select name="tipovehiculo" onChange={inputChangeHandler} required>
-        <option value="" disabled selected>
-          Seleccione un tipo
-        </option>
         <option value="AUTO">AUTO</option>
         <option value="CAMIONETA">CAMIONETA</option>
         <option value="MOTO">MOTO</option>
