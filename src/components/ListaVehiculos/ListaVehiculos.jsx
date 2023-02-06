@@ -8,6 +8,7 @@ function ListaVehiculos({ itemData }) {
       id={item.patente}
       patente={item.patente}
       horae={item.fechaentrada}
+      tipoV={item.tipo}
     />
   ));
 }
