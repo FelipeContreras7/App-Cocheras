@@ -1,15 +1,12 @@
 import React from "react";
 import "./vehiculos.css";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+//Import SWAL2
+import Swal from "sweetalert2";
+//Import firestore
+import { deleteItems } from "../../services/firestore";
 
 function Vehiculos(props) {
-  const navigate = useNavigate();
-
   function patenteHandler() {
-    //Obtenemos el tipo de vehículo
-    let tipoVehiculo = props.tipo;
-
     //Obtenemos los datos de hora de entrada
     let horaEntrada = props.horae;
     let horasTotal = horaEntrada.split(":");
@@ -37,38 +34,76 @@ function Vehiculos(props) {
 
   function calcularPrecio(hora, minutos) {
     let pagar;
-    if (props.tipoV == "AUTO") {
+    if (props.tipoV === "AUTO") {
       if (minutos > 5) {
         pagar = hora * 200 + 200;
       } else {
         pagar = hora * 200;
       }
-      alert("El monto a pagar es: $" + pagar);
+      sweetAlertYN(pagar);
     }
-    if (props.tipoV == "CAMIONETA") {
+    if (props.tipoV === "CAMIONETA") {
       if (minutos > 5) {
         pagar = hora * 250 + 250;
       } else {
         pagar = hora * 250;
       }
-      alert("El monto a pagar es: $" + pagar);
+      sweetAlertYN(pagar);
     }
-    if (props.tipoV == "MOTO") {
+    if (props.tipoV === "MOTO") {
       if (minutos > 5) {
         pagar = hora * 100 + 100;
       } else {
         pagar = hora * 100;
       }
-      alert("El monto a pagar es: $" + pagar);
+      sweetAlertYN(pagar);
     }
+  }
+
+  function sweetAlertYN(pagar) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+      buttonsStyling: true,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: "Está seguro?",
+        text: `El monto a abonar es: $ ${pagar}`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "SI, cobrar",
+        cancelButtonText: "NO, cancelar!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          deleteItems(props.id);
+          swalWithBootstrapButtons.fire(
+            "Listo!",
+            "Se ha marcado la salida del vehículo",
+            "success"
+          );
+          // navigate("/");
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire("Operación cancelada", "", "error");
+        }
+      });
   }
 
   return (
     <div className="filaDatosVehiculo">
-      <button onClick={patenteHandler}>{props.patente}</button>
+      <a>{props.patente}</a>
       <p>
-        Hora entrada: <b>{props.horae}</b>
+        Entrada: <b>{props.horae}</b>
       </p>
+      <button onClick={patenteHandler}>Cobrar</button>
     </div>
   );
 }

@@ -1,31 +1,19 @@
 import React from "react";
 import "./signinform.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
+//Import firestore
 import { createNewHourVehicle } from "../../services/firestore";
 
 function SignInForm() {
-  const navigate = useNavigate();
-
   const [dataForm, setDataForm] = useState({
     patente: "",
     tipovehiculo: "AUTO",
   });
 
-  // function handleSelect(e) {
-  //   let name = e.target.name;
-  //   const valor = e.target.value;
-
-  //   const newDataForm = { ...dataForm };
-  //   newDataForm[name] = valor;
-  //   setDataForm(newDataForm);
-  // }
-
   function inputChangeHandler(evt) {
     let name = evt.target.name;
     let value = evt.target.value.toUpperCase();
-
+    value = value.split(" ").join("");
     const newDataForm = { ...dataForm };
     newDataForm[name] = value;
     setDataForm(newDataForm);
@@ -44,14 +32,15 @@ function SignInForm() {
       fechasalida: null,
     };
 
-    createNewHourVehicle(datosporhora).then(navigate(`/`));
-
-    alert("El vehículo se cargo correctamente");
+    createNewHourVehicle(datosporhora);
+    document.getElementById("inputPatente").value = "";
   }
 
   return (
     <form className="formularioCarga" onSubmit={handleSubmit}>
       <input
+        id="inputPatente"
+        maxLength={7}
         type="text"
         name="patente"
         placeholder="PATENTE"

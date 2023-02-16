@@ -1,18 +1,55 @@
 .filaDatosVehiculo {
   width: 100%;
-  max-width: 25rem;
+  max-width: 50rem;
   padding: 0rem 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 0.05rem solid #000;
-  background-color: #dccece;
+  background-color: #e7e5e5;
+  font-size: 1.5em;
+}
+
+.filaDatosVehiculo a {
+  width: 20%;
+  color: rgb(67, 43, 106);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.filaDatosVehiculo p {
+  width: 60%;
+  display: flex;
+  justify-content: center;
 }
 
 .filaDatosVehiculo button {
-  color: #000;
-  font-size: 1.1rem;
+  padding: 0.4em;
+  background-color: #e7e5e5;
+  color: rgb(234, 84, 84);
+  font-size: 1.5rem;
   font-weight: 600;
   text-decoration: none;
-  background-color: #dccece;
+}
+
+.filaDatosVehiculo button:hover {
+  background-color: rgb(180, 83, 83);
+  transition: 0.1s;
+  color: white;
+  border-radius: 5em;
+}
+
+@media screen and (max-width: 380px) {
+  .filaDatosVehiculo a {
+    font-size: 1.2rem;
+  }
+
+  .filaDatosVehiculo p {
+    font-size: 1rem;
+  }
+
+  .filaDatosVehiculo button {
+    font-size: 1.2rem;
+  }
 }

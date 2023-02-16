@@ -1,10 +1,11 @@
 .NavBar {
   width: 100%;
-  height: 3rem;
+  height: 5rem;
+  background-color: rgb(234, 84, 84);
   padding: 0rem 0.5rem;
   display: flex;
   justify-content: space-between;
-  border-bottom: 0.05rem solid #000;
+  margin-bottom: 5rem;
 }
 
 .NavBar--logo {
@@ -12,13 +13,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
 }
 
 .NavBar--logo h2 {
-  font-size: 1.1rem;
+  margin-left: 2rem;
+  font-size: 1.5rem;
+}
+
+.NavBar--logo h2 a {
+  text-decoration: none;
+  color: white;
 }
 
 .NavBar--items {
+  padding-right: 2rem;
   height: 100%;
   display: flex;
   align-items: center;
@@ -26,13 +35,42 @@
 }
 
 .NavBar--items a {
-  margin-left: 1.5rem;
-  font-size: 1rem;
+  margin-left: 2.5rem;
+  font-size: 1.2rem;
   text-decoration: none;
-  color: #000;
+  color: rgb(255, 255, 255);
   font-weight: 400;
 }
 
 .NavBar--items a:hover {
   font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .NavBar--logo h2 {
+    margin-left: 1rem;
+    font-size: 1.3rem;
+  }
+  .NavBar--items a {
+    margin-left: 2rem;
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  .NavBar {
+    flex-direction: column;
+    height: auto;
+  }
+  .NavBar--logo {
+    /* display: none; */
+  }
+  .NavBar--items {
+    padding-right: 0rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+  .NavBar--items a {
+    margin-left: 0rem;
+  }
 }

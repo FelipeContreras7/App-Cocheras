@@ -1,0 +1,59 @@
+.filterContainer {
+  width: 85%;
+  max-width: 40rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 1rem;
+}
+
+.filterContainer p {
+  width: 20%;
+  font-size: 2rem;
+  margin: 1rem 1rem;
+}
+
+.filterContainer input {
+  width: 80%;
+  font-size: 2rem;
+  margin: 1rem 1rem;
+  border: none;
+  border-bottom: 0.05rem solid #000;
+}
+
+.filterContainer input:focus {
+  outline: none;
+  border-bottom: 0.12rem solid #000;
+  background-color: aliceblue;
+  transition: 0.3s;
+}
+
+@media screen and (max-width: 600px) {
+  .filterContainer p {
+    font-size: 1.5rem;
+    margin: 0.5rem 1rem;
+  }
+  .filterContainer input {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .filterContainer {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .filterContainer p {
+    margin: 0.5rem 0.1rem;
+    width: 25%;
+    font-size: 1.1rem;
+    text-align: left;
+  }
+  .filterContainer input {
+    width: 75%;
+    font-size: 1.1rem;
+    margin: 0.5rem 0.1rem;
+  }
+}
